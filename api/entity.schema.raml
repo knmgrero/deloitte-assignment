@@ -1,0 +1,65 @@
+#%RAML 1.0 Library
+
+types:
+  Order:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 10
+        maxLength: 20
+        example: "ORDER-0001"
+      orderDate: datetime
+      orderRemarks: string
+      customer: Customer
+      purchaseOrder: PurchaseOrder
+      lineItems: LineItem[]
+      grandTotal: number
+
+  Customer:
+    type: object
+    properties:
+      name:
+        type: string
+        maxLength: 100
+        example: "John Smith"
+      address:
+        type: string
+        maxLength: 1000
+        example: "100, Kenneth Ave, Sydney 2000 NSW"
+      company:
+        type: string
+        maxLength: 100
+        example: "Westpac"
+      joinedSince: date-only
+
+  PurchaseOrder:
+    type: object
+    properties:
+      poId:
+        type: string
+        minLength: 10
+        maxLength: 20
+        example: "PO-00000001"
+      poDate: datetime
+
+  Product:
+    type: object
+    properties:
+      name:
+        type: string
+        maxLength: 1000
+        example: "LG Smart TV"
+      category:
+        type: string
+        maxLength: 100
+        example: "Electronics"
+      price: number
+
+  LineItem:
+    type: object
+    properties:
+      product: Product
+      units: number
+      discount: number
+      sub_total: number

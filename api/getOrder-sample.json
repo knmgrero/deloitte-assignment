@@ -1,0 +1,21 @@
+{
+"id": "ORDER-0001",
+"orderDate": "03-12-2019",
+"orderRemarks": "Party items",
+"grandTotal": 134.50,
+"customer": {
+    "name": "John Smith",
+    "address": "100, Kenneth Ave, Sydney 2000 NSW",
+    "company": "Westpac",
+    "joinedSince": "01-01-2010"
+  },
+"purchaseOrder": {
+    "poId": "PO-00000001",
+    "poDate": "01-01-2019"
+  },
+ "product": {
+      "name": "LG Smart TV",
+      "category": "Electronics",
+      "price": 700
+    }
+}

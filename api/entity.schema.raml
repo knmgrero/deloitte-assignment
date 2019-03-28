@@ -8,9 +8,10 @@ types:
         type: string
         minLength: 10
         maxLength: 20
-        example: "ORDER-0001"
       orderDate: datetime
-      orderRemarks: string
+      orderRemarks:
+        type: string
+        maxLength: 200
       customer: Customer
       purchaseOrder: PurchaseOrder
       lineItems: LineItem[]
@@ -22,15 +23,12 @@ types:
       name:
         type: string
         maxLength: 100
-        example: "John Smith"
       address:
         type: string
         maxLength: 1000
-        example: "100, Kenneth Ave, Sydney 2000 NSW"
       company:
         type: string
         maxLength: 100
-        example: "Westpac"
       joinedSince: date-only
 
   PurchaseOrder:
@@ -40,7 +38,6 @@ types:
         type: string
         minLength: 10
         maxLength: 20
-        example: "PO-00000001"
       poDate: datetime
 
   Product:
@@ -49,11 +46,9 @@ types:
       name:
         type: string
         maxLength: 1000
-        example: "LG Smart TV"
       category:
         type: string
-        maxLength: 100
-        example: "Electronics"
+        maxLength: 100      
       price: number
 
   LineItem:

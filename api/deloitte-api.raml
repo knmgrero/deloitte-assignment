@@ -16,15 +16,18 @@ resourceTypes:
           body:
             application/json:
               type: <<entityType>>[]
+              example: <<exampleList>>[]
+
     post:
       description: Create a new <<resourcePathName|!singularize>>
       body:
-        application/json:
-          type: <<entityType>>
+        application/json:         
+          example: <<exampleNewEntity>>        
       responses:
         201:
           body:
             application/json:
+
 
   collection-item:
     get:
@@ -32,16 +35,16 @@ resourceTypes:
       responses:
         200:
           body:
-            application/json:
-              type: <<entityType>>
+            application/json:             
+              example: <<exampleEntity>>
         404:
           description: <<resourcePathName|!singularize>> not found for given id
 
     put:
       description: Update details of a single <<resourcePathName|!singularize>> for the given id
       body:
-        application/json:
-          type: <<entityType>>
+        application/json:        
+          example: <<exampleEntity>>
       responses:
         204:
           description: <<resourcePathName|!singularize>> successfully updated.
@@ -72,7 +75,14 @@ traits:
         example: 3
 
 /orders:
-  type: { collection: {entityType : entity.Order}}
+  type:
+     collection:
+        entityType : entity.Order
+        exampleNewEntity: !newOrder-sample.json
+        exampleList: !listOrders-sample.json
 
   /{id}:
-    type:  { collection-item: {entityType : entity.Order }}
+    type:  
+      collection-item: 
+        entityType : entity.Order
+        exampleEntity: !getOrder-sample.json

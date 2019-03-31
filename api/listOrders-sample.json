@@ -1,20 +1,18 @@
 [
   {
     "id": "ORDER-0001",
-    "orderDate": "03-12-2019",
-    "orderRemarks": "Party items",
+    "orderDate": "2016-02-28T16:41:41.090Z",
+    "orderStatus": "Pending Payment",
+    "lastUpdatedTime": "2016-02-28T16:41:41.090Z",
+    "orderRemarks": "Party items",   
     "grandTotal": 134.50
   },
   {
     "id": "ORDER-0002",
-    "orderDate": "04-12-2019",
+    "orderDate": "2016-02-28T16:41:41.090Z",
+    "orderStatus": "Processed",
+    "lastUpdatedTime": "2016-02-28T16:41:41.090Z",
     "orderRemarks": "Stationary",
     "grandTotal": 1000.00
-  },
-  {
-    "id": "ORDER-0003",
-    "orderDate": "03-12-2019",
-    "orderRemarks": "food and drinks",
-    "grandTotal": 245.75
   }
 ]

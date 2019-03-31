@@ -1,20 +1,42 @@
 {
-"orderDate": "03-12-2019",
-"orderRemarks": "Party items",
-"grandTotal": 134.50,
-"customer": {
-    "name": "John Smith",
-    "address": "100, Kenneth Ave, Sydney 2000 NSW",
-    "company": "Westpac",
-    "joinedSince": "01-01-2010"
+  "orderSummary":  {
+  	  "id": "",
+  	  "orderDate": "2016-02-28T16:41:41.090Z",
+	  "orderStatus": "Pending Payment",
+	  "lastUpdatedTime": "2016-02-28T16:41:41.090Z",
+	  "orderRemarks": "Party items",
+	  "grandTotal": 134.50
   },
-"purchaseOrder": {
-    "poId": "PO-00000001",
-    "poDate": "01-01-2019"
-  },
-"product": {
-      "name": "LG Smart TV",
-      "category": "Electronics",
-      "price": 700
-  }
+  "customer":  {
+      "name": "John Smith",
+      "address": "100, Kenneth Ave, Sydney 2000 NSW",
+      "company": "Westpac",
+      "joinedSince": "2015-05-23"
+   },
+  "purchaseOrder":  {
+      "poId": "PO-00000001",
+      "poDate": "2016-02-28T16:41:41.090Z"
+   }, 
+   "lineItems": [
+		      	    { 
+			       	   "product": {
+			       	   		"name": "Ballon",
+			       	   		"category": "Decorations",
+			       	   		"price": 0.50
+			       	   	 },
+			       	    "units": 100,
+			       	    "discount": 5,
+			       	    "subTotal": 40 
+			        },
+			        { 
+			       	   "product": {
+			       	   		"name": "Cake",
+			       	   		"category": "Food",
+			       	   		"price": 200
+			       	   	 },
+			       	    "units": 1,
+			       	    "discount": 0,
+			       	    "subTotal": 200 
+	   	    		 }  
+   				 ]  
 }

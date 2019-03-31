@@ -4,17 +4,23 @@ types:
   Order:
     type: object
     properties:
+      orderSummary: OrderSummary
+      customer:  Customer
+      purchaseOrder: PurchaseOrder
+      lineItems: LineItem[]
+
+  OrderSummary:
+    type: object
+    properties:
       id:
         type: string
-        minLength: 10
         maxLength: 20
       orderDate: datetime
+      orderStatus: string
+      lastUpdatedTime: datetime
       orderRemarks:
         type: string
         maxLength: 200
-      customer: Customer
-      purchaseOrder: PurchaseOrder
-      lineItems: LineItem[]
       grandTotal: number
 
   Customer:
@@ -48,7 +54,7 @@ types:
         maxLength: 1000
       category:
         type: string
-        maxLength: 100      
+        maxLength: 100
       price: number
 
   LineItem:
@@ -57,4 +63,10 @@ types:
       product: Product
       units: number
       discount: number
-      sub_total: number
+      subTotal: number
+
+  Version:
+    type: number
+    description: Technical version number of the resource provided by server with GET/POST/PUT.
+         This has to be sent back with every PUT to avoid resource been overwritten by a dirty read.
+    example: 5

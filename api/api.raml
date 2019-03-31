@@ -1,0 +1,125 @@
+#%RAML 1.0
+title: Deloitte Order API
+version: v1
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/41e9c72b-acf8-449d-8026-a64977a8a192/deloitte/1.0.0/m/assignment/{version}
+
+uses:
+  entity: entity.schema.raml
+
+resourceTypes:
+  collection:
+    get:
+      is:  [paging]
+      description: Get list of <<resourcePathName|!pluralize>>
+      headers:
+        If-Modified-Since:
+          required: false
+          description: Optional parameter to be sent by clients who periodically poll
+           the server to synchronize latest list of <<resourcePathName|!pluralize>>.
+           When this timestamp is sent, server will return the collection only if it is modified
+           since that time.
+          example: "Wed, 21 Oct 2015 07:20:00 GMT"
+      responses:
+        200:
+          headers:
+            Last-Modified:
+              description: The timestamp when the list of <<resourcePathName|!pluralize>>
+               was last modified in the server. Client may optionally send this timestamp back in
+               subsequent GET calls so server will resend only if collection is modified since then.
+              example: "Wed, 21 Oct 2015 07:25:00 GMT"
+          body:
+            application/json:
+              type: <<entitySummary>>[]
+              example: <<exampleList>>[]
+        304:
+          description: Collection has not been modified since last call. Not sending data now.
+
+    post:
+      description: Create a new <<resourcePathName>>
+      body:
+        application/json:
+          description: Required information to create a new <<resourcePathName>>
+          type:  <<entityType>>
+          example: <<exampleNewEntity>>
+      responses:
+        201:
+          description: Server responds with created <<resourcePathName>> including generated
+            <<resourcePathName>>Id.
+          headers:
+            version: entity.Version
+          body:
+            application/json:
+              type: <<entityType>>
+              example: <<exampleEntity>>
+
+
+  collection-item:
+    get:
+      description: Get details of a single <<resourcePathName>> for the given id
+      responses:
+        200:
+          headers:
+            version: entity.Version
+          body:
+            application/json:
+              type:  <<entityType>>
+              example:  <<exampleEntity>>
+        404:
+          description: <<resourcePathName>> not found for given id
+
+    put:
+      description: Update details of a single <<resourcePathName>> for the given id
+      headers:
+        version: entity.Version
+      body:
+        application/json:
+          type:  <<entityType>>
+          example: <<exampleEntity>>
+      responses:
+        204:
+          description: <<resourcePathName>> successfully updated.
+          headers:
+            version: entity.Version
+        404:
+          description: <<resourcePathName>> not found for given id
+        409:
+          description: Client version of the <<resourcePathName>> is obselete.
+           Please get latest version of <<resourcePathName>> before updating.
+
+    delete:
+      description: Delete <<resourcePathName>> for the given id
+      responses:
+        204:
+          description: <<resourcePathName>> successfully deleted.
+        404:
+          description: <<resourcePathName>> not found for given id
+
+traits:
+  paging:
+    queryParameters:
+      size:
+        description: Page size
+        type: integer
+        required: false
+        example: 10
+      page:
+        description: Page number
+        type: integer
+        required: false
+        example: 3
+
+
+/order:
+  type:
+     collection:
+        entityType:  entity.Order
+        entitySummary:  entity.OrderSummary
+        exampleNewEntity:  !include newOrder-sample.json
+        exampleEntity:  !include getOrder-sample.json
+        exampleList:  !include listOrders-sample.json
+
+  /{id}:
+    type:
+      collection-item:
+        entityType:  entity.Order
+        exampleEntity:  !include getOrder-sample.json
